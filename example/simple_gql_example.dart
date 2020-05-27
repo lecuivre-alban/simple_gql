@@ -1,9 +1,11 @@
-import 'package:simple_gql/simple_gql.dart' as gql;
+import 'package:simple_gql/simple_gql.dart';
 
 void main() async {
-  final response = await gql.query(
-    url: 'https://api.graph.cool/simple/v1/swapi',
-    query: r'''
+  try {
+    final response = await GQLClient(
+      url: 'https://api.graph.cool/simple/v1/swapi',
+    ).query(
+      query: r'''
       query {
         allPersons {
           name
@@ -13,10 +15,13 @@ void main() async {
         }
       }
     ''',
-  );
-  if(response.hasErrors){
+    );
+    print('Yay, success ! :D');
+    print(response);
+  } on GQLError catch (e) {
     print('Ouch ! :(');
-  } else {
-    print('Yay ! :D');
+    print(e);
+  } catch (e) {
+    print('Probably a network error');
   }
 }

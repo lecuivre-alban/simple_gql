@@ -1,4 +1,5 @@
-A library for Dart developers.
+A simple GraphQL library. Quite minimal and hopefully easy to use.
+GQL Subscriptions are not handled yet.
 
 ## Usage
 
@@ -8,24 +9,28 @@ A simple usage example:
 import 'package:simple_gql/simple_gql.dart';
 
 main() {
-  final response = await gql.query(
-    url: 'https://api.graph.cool/simple/v1/swapi',
-    query: r'''
-      query {
-        allPersons {
-          name
-          films {
-            director
+  try {
+    final client = GQLClient(
+      url: 'https://api.graph.cool/simple/v1/swapi',
+    );
+    final response = await client.query(
+      query: r'''
+        query {
+          allPersons {
+            name
+            films {
+              director
+            }
           }
         }
-      }
-    ''',
-  );
+      ''',
+    );
+    print(response);
+  } on GQLError catch(e){
+    print('here is a GraphQL error : $e');
+  } catch(e) {
+    print('unknown error. Usually due to a bad URL or problem with the connection');
+    print(e);
+  }
 }
 ```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme

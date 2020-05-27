@@ -1,7 +1,7 @@
 name: simple_gql
-description: A minimal library to do GQL queries and mutations (subscriptions comming soon)
-version: 1.0.0
-homepage: https://github.com/lecuivre-alban/
+description: A minimal library to do GraphQL queries and mutations (subscriptions not handled yet)
+version: 1.1.0
+homepage: https://github.com/alban-lecuivre/simple_gql
 
 environment:
   sdk: '>=2.7.0 <3.0.0'

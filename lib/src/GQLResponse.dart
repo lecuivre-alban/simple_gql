@@ -1,17 +1,29 @@
-import 'package:meta/meta.dart';
+/*
+ * File Created: 2020-05-27 16:11
+ * Author: Alban LECUIVRE
+ * Copyright - 2020 Alban LECUIVRE
+ */
+
+part of simple_gql;
 
 class GQLResponse {
   final dynamic _data;
-  final List<GQLError> _errors;
 
-  GQLResponse({@required  dynamic data, @required List<dynamic> errors}): _data=data, _errors=_getErrors(errors);
+  GQLResponse({@required  dynamic data}): _data=data;
 
-  bool get hasErrors => _errors?.isNotEmpty ?? false;
   bool get hasData => _data != null;
-
   dynamic get data => _data;
-  List<GQLError> get errors => _errors;
-  GQLError get error => _errors?.first;
+
+  @override
+  String toString() => 'GQLRESPONSE:\n\tdata:$data';
+
+}
+
+class GQLError {
+  final String message;
+  final String code;
+
+  GQLError({this.code, this.message});
 
   static List<GQLError> _getErrors(List<dynamic> err) {
     if(err == null) return null;
@@ -26,11 +38,7 @@ class GQLResponse {
       }
     ).toList();
   }
-}
 
-class GQLError {
-  final String message;
-  final String code;
-
-  GQLError({this.code, this.message});
+  @override
+  String toString() => 'GQLERROR:\n\tcode:$code\n\tmessage:$message';
 }
