@@ -1,6 +1,3 @@
-## 1.0.0
- - Support GQL Queries and Mutations
-
 ## 1.1.0
 **Breaking Changes**
 - new object GQLClient used to define the URL and headers shared between queries.
@@ -26,3 +23,6 @@ try{
     // do other stuff
 }
 ```
+
+## 1.0.0
+ - Support GQL Queries and Mutations
