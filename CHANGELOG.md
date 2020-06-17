@@ -1,5 +1,7 @@
-## 1.1.0
-**Breaking Changes**
+## 1.1.1 Minor changes
+ - Added getter to GQLClient's headers property
+
+## 1.1.0 **Breaking changes**
 - new object GQLClient used to define the URL and headers shared between queries.
 New usage example :
 ```dart
@@ -24,5 +26,5 @@ try{
 }
 ```
 
-## 1.0.0
+## 1.0.0 Initial release
  - Support GQL Queries and Mutations

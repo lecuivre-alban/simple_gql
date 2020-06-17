@@ -25,6 +25,8 @@ class GQLClient {
     _headers = headers;
   }
 
+  Map<String,String> get headers => _headers;
+  
   /// GQL Query using the Dart Http package
   /// [url] is your gql endpoint.
   ///
