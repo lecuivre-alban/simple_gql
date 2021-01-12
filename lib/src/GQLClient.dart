@@ -6,12 +6,16 @@
 
 part of simple_gql;
 
+/// Class representing your GQL endpoint.
+/// You can define [headers] to be used for each query/mutation.
 class GQLClient {
   final String _url;
   Map<String, String> _headers;
 
-  GQLClient({@required String url, Map<String, String> headers})
-      : _url = url,
+  GQLClient({
+    @required String url,
+    Map<String, String> headers,
+  })  : _url = url,
         _headers = headers ?? {};
 
   /// Method to set the headers used in the futures queries/mutations
@@ -25,8 +29,8 @@ class GQLClient {
     _headers = headers;
   }
 
-  Map<String,String> get headers => _headers;
-  
+  Map<String, String> get headers => _headers;
+
   /// GQL Query using the Dart Http package
   /// [url] is your gql endpoint.
   ///

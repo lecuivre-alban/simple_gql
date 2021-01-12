@@ -1,4 +1,4 @@
-A simple GraphQL library. Quite minimal and hopefully easy to use.
+A GraphQL library. Quite minimal and hopefully easy to use.
 GQL Subscriptions are not handled yet.
 
 ## Usage
@@ -6,6 +6,7 @@ GQL Subscriptions are not handled yet.
 A simple usage example:
 
 ```dart
+// /!\ It seem the API used in this example no longer exist. 
 import 'package:simple_gql/simple_gql.dart';
 
 main() {
