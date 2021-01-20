@@ -6,13 +6,12 @@ GQL Subscriptions are not handled yet.
 A simple usage example:
 
 ```dart
-// /!\ It seem the API used in this example no longer exist. 
 import 'package:simple_gql/simple_gql.dart';
 
 main() {
   try {
     final client = GQLClient(
-      url: 'https://api.graph.cool/simple/v1/swapi',
+      url: 'https://your-domain.com/your-graphql-endpoint',
     );
     final response = await client.query(
       query: r'''

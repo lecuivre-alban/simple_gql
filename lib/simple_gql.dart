@@ -6,3 +6,5 @@ import 'package:meta/meta.dart';
 
 part 'src/GQLClient.dart';
 part 'src/GQLResponse.dart';
+part 'src/GQLMutation.dart';
+part 'src/GQLQuery.dart';
