@@ -48,7 +48,7 @@ class GQLMsg {
   GQLMsg(this.body);
 
   dynamic get data => body['data'];
-  List<GQLError> get errors => GQLError._getErrors(body['error']);
+  List<GQLError> get errors => GQLError._getErrors(body['errors']);
   GQLError get error => errors.first;
   bool get hasData => body['data'] != null;
   bool get hasErrors => (errors ?? []).isNotEmpty;
