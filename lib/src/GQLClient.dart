@@ -9,14 +9,16 @@ part of simple_gql;
 /// Class representing your GQL endpoint.
 /// You can define [headers] to be used for each query/mutation.
 class GQLClient {
-  final String _url;
+  final String endpoint;
   Map<String, String> _headers;
 
-  GQLClient({
-    @required String url,
+  // General headers shared by all GQLClient created
+  static Map<String, String> _generalHeaders;
+
+  GQLClient(
+    this.endpoint, {
     Map<String, String> headers,
-  })  : _url = url,
-        _headers = headers ?? {};
+  }) : _headers = headers ?? _generalHeaders ?? {};
 
   /// Method to set the headers used in the futures queries/mutations
   /// [headers] Headers that you want to set
@@ -27,6 +29,16 @@ class GQLClient {
   /// ```
   void setHeaders(Map<String, String> headers) {
     _headers = headers;
+  }
+
+  /// Used to set default headers for all GQLClient that will be created.
+  ///
+  /// /// ```dart
+  /// // Example
+  /// GQLClient.setGeneralHeaders({'Authorization': 'Bearer $token'});
+  /// ```
+  static void setGeneralHeaders(Map<String, String> headers) {
+    _generalHeaders = headers;
   }
 
   Map<String, String> get headers => _headers;
@@ -66,7 +78,7 @@ class GQLClient {
       Map<String, dynamic> variables,
       Map<String, String> headers}) async {
     try {
-      return await post(_url,
+      return await post(Uri.parse(endpoint),
               headers: (headers ?? _headers)
                 ..putIfAbsent('content-type', () => 'application/json'),
               body: jsonEncode({'query': query, 'variables': variables}))
@@ -113,7 +125,7 @@ class GQLClient {
       Map<String, dynamic> variables,
       Map<String, String> headers}) async {
     try {
-      return await post(_url,
+      return await post(Uri.parse(endpoint),
               headers: (headers ?? _headers)
                 ..putIfAbsent('content-type', () => 'application/json')
                 ..putIfAbsent('accept', () => 'application/json'),

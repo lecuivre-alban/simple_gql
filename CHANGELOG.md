@@ -1,3 +1,6 @@
+## 1.1.2 Global default headers
+ - Added possibility to set default headers for all GQLClient that will be created.
+
 ## 1.1.1 Minor changes
  - Added getter to GQLClient's headers property
 
