@@ -9,7 +9,7 @@ part of simple_gql;
 class GQLResponse {
   final dynamic _data;
 
-  GQLResponse({@required  dynamic data}): _data=data;
+  GQLResponse({required  dynamic data}): _data=data;
 
   bool get hasData => _data != null;
   dynamic get data => _data;
@@ -20,12 +20,12 @@ class GQLResponse {
 }
 
 class GQLError {
-  final String message;
-  final String code;
+  final String? message;
+  final String? code;
 
   GQLError({this.code, this.message});
 
-  static List<GQLError> _getErrors(List<dynamic> err) {
+  static List<GQLError>? _getErrors(List<dynamic>? err) {
     if(err == null) return null;
     if(err.isEmpty) return [];
     return err.map(

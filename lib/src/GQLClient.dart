@@ -13,11 +13,11 @@ class GQLClient {
   Map<String, String> _headers;
 
   // General headers shared by all GQLClient created
-  static Map<String, String> _generalHeaders;
+  static Map<String, String>? _generalHeaders;
 
   GQLClient(
     this.endpoint, {
-    Map<String, String> headers,
+    Map<String, String>? headers,
   }) : _headers = headers ?? _generalHeaders ?? {};
 
   /// Method to set the headers used in the futures queries/mutations
@@ -74,9 +74,9 @@ class GQLClient {
   /// );
   /// ```
   Future<GQLResponse> query(
-      {@required String query,
-      Map<String, dynamic> variables,
-      Map<String, String> headers}) async {
+      {required String query,
+      Map<String, dynamic>? variables,
+      Map<String, String>? headers}) async {
     try {
       return await post(Uri.parse(endpoint),
               headers: (headers ?? _headers)
@@ -84,8 +84,8 @@ class GQLClient {
               body: jsonEncode({'query': query, 'variables': variables}))
           .then((res) {
         final body = jsonDecode(res.body);
-        if ((body['errors'] as List)?.isNotEmpty ?? false) {
-          throw GQLError._getErrors(body['errors']);
+        if ((body['errors'] as List?)?.isNotEmpty ?? false) {
+          throw GQLError._getErrors(body['errors'])!;
         }
         return GQLResponse(data: body['data']);
       });
@@ -121,9 +121,9 @@ class GQLClient {
   /// );
   /// ```
   Future<GQLResponse> mutation(
-      {@required String mutation,
-      Map<String, dynamic> variables,
-      Map<String, String> headers}) async {
+      {required String mutation,
+      Map<String, dynamic>? variables,
+      Map<String, String>? headers}) async {
     try {
       return await post(Uri.parse(endpoint),
               headers: (headers ?? _headers)
@@ -132,8 +132,8 @@ class GQLClient {
               body: jsonEncode({'query': mutation, 'variables': variables}))
           .then((res) {
         final body = jsonDecode(res.body);
-        if ((body['errors'] as List)?.isNotEmpty ?? false) {
-          throw GQLError._getErrors(body['errors']);
+        if ((body['errors'] as List?)?.isNotEmpty ?? false) {
+          throw GQLError._getErrors(body['errors'])!;
         }
         return GQLResponse(data: body['data']);
       });

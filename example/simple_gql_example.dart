@@ -3,7 +3,7 @@ import 'package:simple_gql/simple_gql.dart';
 void main() async {
   try {
     final response = await GQLClient(
-      url: 'https://api.graph.cool/simple/v1/swapi',
+      'https://api.graph.cool/simple/v1/swapi',
     ).query(
       query: r'''
       query {
