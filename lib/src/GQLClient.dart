@@ -87,7 +87,7 @@ class GQLClient {
         if ((body['errors'] as List?)?.isNotEmpty ?? false) {
           throw GQLError._getErrors(body['errors'])!;
         }
-        return GQLResponse(data: body['data']);
+        return GQLResponse(data: body['data'], httpResponse: res);
       });
     } catch (e) {
       rethrow;
@@ -135,7 +135,7 @@ class GQLClient {
         if ((body['errors'] as List?)?.isNotEmpty ?? false) {
           throw GQLError._getErrors(body['errors'])!;
         }
-        return GQLResponse(data: body['data']);
+        return GQLResponse(data: body['data'], httpResponse: res);
       });
     } catch (e) {
       rethrow;

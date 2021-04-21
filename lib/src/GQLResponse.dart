@@ -8,11 +8,16 @@ part of simple_gql;
 
 class GQLResponse {
   final dynamic _data;
+  final Response _httpResponse;
 
-  GQLResponse({required  dynamic data}): _data=data;
+  GQLResponse({
+    required  dynamic data,
+    required Response httpResponse
+  }): _data=data, _httpResponse=httpResponse;
 
   bool get hasData => _data != null;
   dynamic get data => _data;
+  Response get httpResponse => _httpResponse;
 
   @override
   String toString() => 'GQLRESPONSE:\n\tdata:$data';

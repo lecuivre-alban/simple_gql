@@ -3,18 +3,32 @@ import 'package:simple_gql/simple_gql.dart';
 void main() async {
   try {
     final response = await GQLClient(
-      'https://api.graph.cool/simple/v1/swapi',
+      'https://graphqlzero.almansi.me/api',
     ).query(
       query: r'''
-      query {
-        allPersons {
-          name
-          films {
-            director
+        query todos($options: PageQueryOptions) {
+          todos(options: $options) {
+            data {
+              id
+              title
+              completed
+              user {
+                id
+                username
+                website
+              }
+            }
           }
         }
-      }
-    ''',
+      ''',
+      variables: {
+        'options': {
+          'paginate': {
+            'page': 0,
+            'limit': 1,
+          },
+        },
+      },
     );
     print('Yay, success ! :D');
     print(response);
@@ -23,5 +37,6 @@ void main() async {
     print(e);
   } catch (e) {
     print('Probably a network error');
+    print(e);
   }
 }
