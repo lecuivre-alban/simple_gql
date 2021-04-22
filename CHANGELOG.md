@@ -1,3 +1,7 @@
+## 1.2.0 Null Safety
+ - Migration to null safety
+ - Added getter for http response if you want to access additional information.
+
 ## 1.1.2 Global default headers
  - Added possibility to set default headers for all GQLClient that will be created.
 

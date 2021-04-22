@@ -10,10 +10,9 @@ class GQLResponse {
   final dynamic _data;
   final Response _httpResponse;
 
-  GQLResponse({
-    required  dynamic data,
-    required Response httpResponse
-  }): _data=data, _httpResponse=httpResponse;
+  GQLResponse({required dynamic data, required Response httpResponse})
+      : _data = data,
+        _httpResponse = httpResponse;
 
   bool get hasData => _data != null;
   dynamic get data => _data;
@@ -21,7 +20,6 @@ class GQLResponse {
 
   @override
   String toString() => 'GQLRESPONSE:\n\tdata:$data';
-
 }
 
 class GQLError {
@@ -30,18 +28,15 @@ class GQLError {
 
   GQLError({this.code, this.message});
 
-  static List<GQLError>? _getErrors(List<dynamic>? err) {
-    if(err == null) return null;
-    if(err.isEmpty) return [];
-    return err.map(
-      (e){
-        try{
-          return GQLError(code: e['extensions']['code'], message: e['message']);
-        }catch(_){
-          return GQLError(code: null, message: null);
-        }         
+  static List<GQLError> _getErrors(List<dynamic>? err) {
+    if (err == null || err.isEmpty) return [];
+    return err.map((e) {
+      try {
+        return GQLError(code: e['extensions']['code'], message: e['message']);
+      } catch (_) {
+        return GQLError(code: null, message: null);
       }
-    ).toList();
+    }).toList();
   }
 
   @override

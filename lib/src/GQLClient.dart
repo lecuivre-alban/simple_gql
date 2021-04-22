@@ -85,7 +85,7 @@ class GQLClient {
           .then((res) {
         final body = jsonDecode(res.body);
         if ((body['errors'] as List?)?.isNotEmpty ?? false) {
-          throw GQLError._getErrors(body['errors'])!;
+          throw GQLError._getErrors(body['errors']).first;
         }
         return GQLResponse(data: body['data'], httpResponse: res);
       });
@@ -133,7 +133,7 @@ class GQLClient {
           .then((res) {
         final body = jsonDecode(res.body);
         if ((body['errors'] as List?)?.isNotEmpty ?? false) {
-          throw GQLError._getErrors(body['errors'])!;
+          throw GQLError._getErrors(body['errors']).first;
         }
         return GQLResponse(data: body['data'], httpResponse: res);
       });
