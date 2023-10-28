@@ -31,11 +31,7 @@ class GQLError {
   static List<GQLError> _getErrors(List<dynamic>? err) {
     if (err == null || err.isEmpty) return [];
     return err.map((e) {
-      try {
-        return GQLError(code: e['extensions']['code'], message: e['message']);
-      } catch (_) {
-        return GQLError(code: null, message: null);
-      }
+      return GQLError(code: e?['extensions']?['code'], message: e?['message']);
     }).toList();
   }
 
